@@ -24,7 +24,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    "daphne",
+    # "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "channels",
+    "user",
+    "chat",
     # third-party-apps
     "rest_framework",
     "corsheaders",
@@ -42,9 +44,9 @@ INSTALLED_APPS = [
     'cloudinary',
 ]
 
-# AUTH_USER_MODEL = "user.User"
+AUTH_USER_MODEL = "user.User"
 
-CLIENT_URL = config('CLIENT_URL')
+
 REDIS_URL = config('REDIS_URL', '127.0.0.1:6379')
 
 
