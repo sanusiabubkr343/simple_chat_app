@@ -8,6 +8,14 @@ from .models import InAppChat
 from rest_framework.decorators import action
 
 
+def index(request):
+    return render(request, "chat/index.html")
+
+
+def room(request, room_name):
+    return render(request, "chat/room.html", {"room_name": room_name})
+
+
 class InAppChatViewSets(
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,

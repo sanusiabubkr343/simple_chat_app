@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import InAppChatViewSets
+from .views import InAppChatViewSets, index, room
 
 app_name = 'chat'
 
@@ -9,5 +9,7 @@ router.register('', InAppChatViewSets)
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('interfaces/', include(router.urls)),
+    path("", index, name="index"),
+    path("<str:room_name>/", room, name="room"),
 ]
