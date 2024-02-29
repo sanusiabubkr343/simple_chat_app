@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import generics, status, viewsets, filters
 from .models import InAppChat
 from rest_framework.decorators import action
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 # def index(request):
@@ -26,6 +27,10 @@ class InAppChatViewSets(
     serializer_class = InAppChatSerializer
     permission_classes = [IsAuthenticated]
     queryset = InAppChat.objects.all()
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['sender', 'receiver',"is_read", "unique_identifier"]
+    search_fields = ['message']
+    ordering_fields = ['created_at']
 
     def paginate_results(self, queryset):
         page = self.paginate_queryset(queryset)
