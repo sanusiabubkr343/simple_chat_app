@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = "user.User"
 
 
-REDIS_URL = config('REDIS_URL', '127.0.0.1:6379')
+REDIS_URL = config('REDIS_URL', 'localhost:6379')
 
 
 MIDDLEWARE = [
@@ -70,8 +70,8 @@ REST_FRAMEWORK = {
     "NON_FIELD_ERRORS_KEY": "errors",
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
+        # "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.TokenAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated"),

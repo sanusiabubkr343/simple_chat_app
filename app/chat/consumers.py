@@ -1,15 +1,20 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.db import database_sync_to_async
+
 import json
 import time
-from rest_framework_simplejwt.tokens import UntypedToken
-from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import AnonymousUser
 
+from channels.db import database_sync_to_async
 
 class ChatConsumer(AsyncWebsocketConsumer):
+    
     async def connect(self):
+        #decided to move all synchronous import here due to app registry exception
+       
+        from rest_framework_simplejwt.tokens import UntypedToken
+        from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+        from django.contrib.auth import get_user_model
+        from django.contrib.auth.models import AnonymousUser
+
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
 
