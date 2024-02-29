@@ -47,8 +47,8 @@ After starting the service, you can interact with it using the provided API endp
 
   ```json
   { 
-    "message": "Good morning, kalshnikov",
-    "receiver": 2,
+    "message": "Hello Lagos",
+    "receiver": 1,
     "unique_identifier": "unique_identifier-1-and-2"
   }
   ```
