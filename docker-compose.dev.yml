@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/dev/Dockerfile
+    image: sanusi/simple-chat-api
+    command: uvicorn core.asgi:application --host 0.0.0.0 --port 10009
+    volumes:
+      - ./app:/app
+    ports:
+      - "10009:10009"
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    depends_on:
+      - redis
+
+  redis:
+    image: bitnami/redis:latest
+    ports:
+      - "6379:6379"
+    restart: always
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=postgrespw
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=simple-chats
+    ports:
+      - "55000:5432"
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    depends_on:
+      - redis
+
+volumes:
+  postgres_data:
