@@ -78,7 +78,15 @@ You can also pull the Docker image directly:
 ```bash
 docker pull sanusiabubakr343/simple-chat-api
 ```
+## License
+
+This project is licensed under the [MIT License](LICENSE).
 
 ## Thanks
+```
+
+Make sure to replace `<repository_url>` with the actual URL of your repository. Also, ensure that the image URLs point to the correct locations in your repository. Additionally, the license section has been added at the end of the document.
+
+
 
 
